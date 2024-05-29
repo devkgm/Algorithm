@@ -1,27 +1,16 @@
 class Solution {
     public String solution(String s) {
-        String answer = "";
-        String[] arr = s.split(" ");
- 
-        for(int i=0; i<arr.length; i++) {
-            String now = arr[i];
- 
-            if(arr[i].length() == 0) {
-                answer += " "; 
-            } 
-            else {
-            
-                answer += now.substring(0, 1).toUpperCase();
-                answer += now.substring(1, now.length()).toLowerCase();
-                answer += " ";
+        String[] str = s.toLowerCase().split(" ", -1);
+        
+        for(int i = 0; i < str.length; i++){
+            if(str[i].charAt(0) >= '0' && str[i].charAt(0) <= '9') continue;
+            if(str[i].length() == 0) {
+                str[i] = "$";
             }
-            
+            StringBuilder sb = new StringBuilder(str[i]);
+            sb.setCharAt(0,Character.toUpperCase(str[i].charAt(0)) );
+            str[i] = sb.toString();
         }
-        
-        if(s.substring(s.length()-1, s.length()).equals(" ")){
-            return answer;
-        }
-        
-        return answer.substring(0, answer.length()-1);
+        return String.join(" ", str);
     }
 }
