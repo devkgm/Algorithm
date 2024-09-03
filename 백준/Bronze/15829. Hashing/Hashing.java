@@ -9,9 +9,12 @@ public class Main {
         StringTokenizer st = new StringTokenizer(br.readLine());
         int len = Integer.parseInt(st.nextToken());
         char[] arr = br.readLine().toCharArray();
-        int hash = 0;
+        long hash = 0;
+        long pow = 1;
         for (int i = 0; i < len; i++) {
-            hash += (int) ((arr[i] - 'a' + 1) * Math.pow(31, i));
+            int a = arr[i] - 'a' + 1;
+            hash = (hash + a * pow) % 1234567891;
+            pow = (pow * 31) % 1234567891;
         }
         System.out.println(hash);
     }
